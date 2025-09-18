@@ -16,15 +16,13 @@ API_URL = "https://id.who.int/icd/release/11"
 # Helper utilities
 # -------------------------
 def load_default_credentials():
-    # Prefer Streamlit secrets, then environment variables
-    cid = None
-    csec = None
+    cid = ''
+    csec = ''
     try:
-        cid = st.secrets["WHO_CLIENT_ID"]
-        csec = st.secrets["WHO_CLIENT_SECRET"]
-    except Exception:
         cid = os.getenv("WHO_CLIENT_ID")
         csec = os.getenv("WHO_CLIENT_SECRET")
+    except Exception:
+       print("Exception occured here!!!!")
     return cid, csec
 
 def mask_secret(s, keep=4):
